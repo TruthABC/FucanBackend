@@ -92,6 +92,7 @@ session: xxx
     cases: [
       {
         id: 123456,
+        mode: 2, //2 or 4
         name: "xxx",
         time: 1321312131123,	// 毫秒
         thumbUrl: "http://xxx.jpg",
@@ -138,6 +139,7 @@ id: 123456
   errmsg: "",
   data: {
     id: 123456,
+    mode: 2, //2 or 4    
     results: [
       {
         category: "溃疡",

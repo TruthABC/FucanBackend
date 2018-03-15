@@ -50,6 +50,7 @@ public interface CaseMapper {
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "name", column = "name"),
+            @Result(property = "mode", column = "mode"),
             @Result(property = "time", column = "time"),
             @Result(property = "thumbUrl", column = "thumbUrl"),
             @Result(property = "state", column = "state"),
@@ -64,9 +65,10 @@ public interface CaseMapper {
     })
     Case getCaseById(@Param("id") int id);
 
-    //3.更新state
+    //3.更新case（不含对应的thumbs）
     @Update(" UPDATE `case`" +
             " SET name = #{name}," +
+            "  mode = #{mode}" +
             "  time = #{time}," +
             "  thumbUrl = #{thumbUrl}," +
             "  state = #{state}," +

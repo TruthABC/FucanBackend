@@ -55,7 +55,7 @@ public class FilterResultService {
                     res2.getThumbs().add(new ThumbElmt(t.getId(), t.getUrl(), t.getTime().getTime(), t.isTag()));
                 }
             }
-            response = new FilterResultResponse(cas.getId(), resList);
+            response = new FilterResultResponse(cas.getId(), cas.getMode(), resList);
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

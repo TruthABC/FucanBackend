@@ -7,6 +7,7 @@ public class Case {
 
     private int id;
     private String name;
+    private String mode;
     private Timestamp time;// 毫秒
     private String thumbUrl;
     private int state;// 0-3 分别 未开始、进行中、待确认、已结束
@@ -19,9 +20,10 @@ public class Case {
 
     public Case() {}
 
-    public Case(int id, String name, Timestamp time, String thumbUrl, int state, int progress, int totalCount, int positiveCount, int negativeCount, String directory, List<Thumb> thumbs) {
+    public Case(int id, String name, String mode, Timestamp time, String thumbUrl, int state, int progress, int totalCount, int positiveCount, int negativeCount, String directory, List<Thumb> thumbs) {
         this.id = id;
         this.name = name;
+        this.mode = mode;
         this.time = time;
         this.thumbUrl = thumbUrl;
         this.state = state;
@@ -47,6 +49,14 @@ public class Case {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
     public Timestamp getTime() {

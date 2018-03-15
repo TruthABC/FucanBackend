@@ -5,12 +5,14 @@ import java.util.List;
 public class FilterResultResponse {
 
     private int id;
+    private String mode;
     private List<FilterResultResponseElmt> results;
 
     public FilterResultResponse() {}
 
-    public FilterResultResponse(int id, List<FilterResultResponseElmt> results) {
+    public FilterResultResponse(int id, String mode, List<FilterResultResponseElmt> results) {
         this.id = id;
+        this.mode = mode;
         this.results = results;
     }
 
@@ -20,6 +22,14 @@ public class FilterResultResponse {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
     public List<FilterResultResponseElmt> getResults() {

@@ -44,4 +44,9 @@ public interface ThumbMapper {
             " VALUES (#{url}, #{time}, #{category}, #{tag}, #{caseId})")
     void createThumb(Thumb thumb);
 
+    //4.根据id删除一个thumb
+    @Delete(" DELETE FROM `thumb`" +
+            " WHERE id = #{id}")
+    void deleteThumbById(@Param("id")int id);
+
 }

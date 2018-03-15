@@ -35,9 +35,9 @@ spring:
 * 180308: 
     10.48.43.53Aryan8]opals
     jindiwei
-* 180313:
-    建立git项目在线仓库
-    
+* 180313: 建立git项目在线仓库
+* 180315: case.mode已添加
+* 180315: TODO - 获取病例对后台的优化，使得获取单个病例时不一定同时获取对应的影像
 
 ### 1.登录 /login
 
@@ -92,7 +92,7 @@ session: xxx
     cases: [
       {
         id: 123456,
-        mode: 2, //2 or 4
+        mode: "2",  //"2" 二分类 or "4" 四分类
         name: "xxx",
         time: 1321312131123,	// 毫秒
         thumbUrl: "http://xxx.jpg",

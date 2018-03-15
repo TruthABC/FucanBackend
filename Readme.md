@@ -96,8 +96,8 @@ session: xxx
         name: "xxx",
         time: 1321312131123,	// 毫秒
         thumbUrl: "http://xxx.jpg",
-        state: 0,	// 0-3 分别 未开始、进行中、待确认、已结束
-        progress: 50,	// 进度 比如50%
+        state: 0,	// 0-2 分别是：未筛查，已筛查，已结束
+        progress: 50,	// 进度 比如50%
         totalCount: 2000,	// 影像总数
         positiveCount: 1000,	// 阳性
         negativeCount: 20		// 阴性

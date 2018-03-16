@@ -42,17 +42,35 @@ public class FilterResultService {
 
         //分支：根据id成功检索到病例
         try {
+            int categoryCount = 0;
+            switch (cas.getMode()) {
+                case "2": categoryCount = 2; break;
+                case "4": categoryCount = 4; break;
+                default: throw new Exception("invalid mode[" + cas.getMode() + "]");
+            }
+            String[] category = new String[4];
+            if (categoryCount == 2) {
+                category[0] = "阴性";
+                category[1] = "阳性";
+            } else if (categoryCount == 4) {
+                category[0] = "正常和干扰项";
+                category[1] = "凹陷型病变";
+                category[2] = "隆起型病变";
+                category[3] = "平坦型病变";
+            }
             List<FilterResultResponseElmt> resList = new ArrayList<FilterResultResponseElmt>();
-            FilterResultResponseElmt res1 = new FilterResultResponseElmt("溃疡", 0, 0, new ArrayList<ThumbElmt>());
-            FilterResultResponseElmt res2 = new FilterResultResponseElmt("正常", 0, 0, new ArrayList<ThumbElmt>());
-            resList.add(res1);
-            resList.add(res2);
+            for (int i = 0; i < categoryCount; i++) {
+                FilterResultResponseElmt res1 = new FilterResultResponseElmt(category[i], 0, 0, new ArrayList<ThumbElmt>());
+                resList.add(res1);
+            }
             List<Thumb> thumbs = cas.getThumbs();
             for (Thumb t: thumbs) {
-                if (t.getCategory().equals("溃疡")) {
-                    res1.getThumbs().add(new ThumbElmt(t.getId(), t.getUrl(), t.getTime().getTime(), t.isTag()));
-                } else {
-                    res2.getThumbs().add(new ThumbElmt(t.getId(), t.getUrl(), t.getTime().getTime(), t.isTag()));
+                for (int i = 0; i < categoryCount; i++) {
+                    String cat = category[i];
+                    if (t.getCategory().equals(cat)) {
+                        resList.get(i).getThumbs().add(new ThumbElmt(t.getId(), t.getUrl(), t.getTime().getTime(), t.isTag()));
+                        break;
+                    }
                 }
             }
             response = new FilterResultResponse(cas.getId(), cas.getMode(), resList);

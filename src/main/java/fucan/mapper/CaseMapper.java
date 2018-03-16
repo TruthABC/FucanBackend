@@ -68,7 +68,7 @@ public interface CaseMapper {
     //3.更新case（不含对应的thumbs）
     @Update(" UPDATE `case`" +
             " SET name = #{name}," +
-            "  mode = #{mode}" +
+            "  mode = #{mode}," +
             "  time = #{time}," +
             "  thumbUrl = #{thumbUrl}," +
             "  state = #{state}," +

@@ -1,8 +1,8 @@
 package fucan.service;
 
+import fucan.Global;
 import fucan.entity.mapping.Case;
 import fucan.entity.mapping.Thumb;
-import fucan.entity.response.CommonResponse;
 import fucan.entity.response.FilterResultResponse;
 import fucan.entity.response.FilterResultResponseElmt;
 import fucan.entity.response.ThumbElmt;
@@ -42,32 +42,31 @@ public class FilterResultService {
 
         //分支：根据id成功检索到病例
         try {
-            int categoryCount = 0;
-            switch (cas.getMode()) {
-                case "2": categoryCount = 2; break;
-                case "4": categoryCount = 4; break;
-                default: throw new Exception("invalid mode[" + cas.getMode() + "]");
-            }
-            String[] category = new String[4];
+            final int categoryCount = Global.getModeInt(cas.getMode());
+            final String[] category;
             if (categoryCount == 2) {
-                category[0] = "阴性";
-                category[1] = "阳性";
+                category = Global.MODE_2_CATEGORY;
             } else if (categoryCount == 4) {
-                category[0] = "正常和干扰项";
-                category[1] = "凹陷型病变";
-                category[2] = "隆起型病变";
-                category[3] = "平坦型病变";
+                category = Global.MODE_4_CATEGORY;
+            } else {
+                category = new String[4];
             }
             List<FilterResultResponseElmt> resList = new ArrayList<FilterResultResponseElmt>();
             for (int i = 0; i < categoryCount; i++) {
-                FilterResultResponseElmt res1 = new FilterResultResponseElmt(category[i], 0, 0, new ArrayList<ThumbElmt>());
-                resList.add(res1);
+                FilterResultResponseElmt res = new FilterResultResponseElmt(category[i], 0, 0, new ArrayList<ThumbElmt>());
+                resList.add(res);
             }
             List<Thumb> thumbs = cas.getThumbs();
             for (Thumb t: thumbs) {
                 for (int i = 0; i < categoryCount; i++) {
                     String cat = category[i];
                     if (t.getCategory().equals(cat)) {
+                        resList.get(i).setCount(resList.get(i).getCount() + 1);
+                        int plusTag = 0;
+                        if (t.isTag()) {
+                            plusTag = 1;
+                        }
+                        resList.get(i).setTagCount(resList.get(i).getTagCount() + plusTag);
                         resList.get(i).getThumbs().add(new ThumbElmt(t.getId(), t.getUrl(), t.getTime().getTime(), t.isTag()));
                         break;
                     }

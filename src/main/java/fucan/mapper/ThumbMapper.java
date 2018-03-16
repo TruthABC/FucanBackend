@@ -23,7 +23,7 @@ public interface ThumbMapper {
             @Result(property = "tag",column = "tag"),
             @Result(property = "caseId",column = "case_id")
     })
-    Thumb getThumbByUrl(@Param("url")String url);
+    List<Thumb> getThumbByUrl(@Param("url")String url);
 
     //2.根据case_id查询对应的所有thumb
     @Select(" SELECT *" +

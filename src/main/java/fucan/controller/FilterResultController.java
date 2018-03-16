@@ -6,6 +6,7 @@ import fucan.entity.response.FilterResultResponseElmt;
 import fucan.service.FilterResultService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class FilterResultController {
 
     //1.获取筛查结果
     @RequestMapping("/filter_result")
+    @CrossOrigin
     public String getFilterResult(@RequestParam(value="session") String session,
                                   @RequestParam(value="id") String id) {
         JSONObject jsonRet;

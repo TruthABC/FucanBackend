@@ -6,6 +6,7 @@ import fucan.entity.response.CommonResponse;
 import fucan.service.CaseService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class CaseController {
 
     //1.获取所有病例
     @RequestMapping("/case")
+    @CrossOrigin
     public String getCase(@RequestParam(value="session") String session) {
         JSONObject jsonRet;
 
@@ -41,6 +43,7 @@ public class CaseController {
 
     //2.开始筛查
     @RequestMapping("/filter_start")
+    @CrossOrigin
     public String startFilter(@RequestParam(value="session") String session,
                               @RequestParam(value="id") String id) {
         JSONObject jsonRet;

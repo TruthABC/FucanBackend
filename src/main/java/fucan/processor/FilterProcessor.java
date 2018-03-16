@@ -55,7 +55,7 @@ public class FilterProcessor {
     public void processFilter(Case cas) throws Exception {
         String casePath = Global.DATA_ROOT_LOCAL + "/" + cas.getDirectory();
         String shell2 = "/home/jindiwei/caffe/venv/bin/python /home/jindiwei/Changhai/deploy_interface.py " + casePath;
-        String shell4 = "/home/jindiwei/caffe/venv/bin/python /home/jindiwei/capsule/deploy_interface.py " + casePath;
+        String shell4 = "/home/jindiwei/caffe/venv/bin/python /home/jindiwei/Changhai/deploy_interface_4.py " + casePath;
 
         //产生的resultFile应名为cas.getName() + ".txt"，与casePath文件夹同名
         File resultFile = new File(casePath + ".txt");
@@ -67,7 +67,8 @@ public class FilterProcessor {
             Process p;//调用控制台执行shell
             switch (cas.getMode()) {
                 case "2": p = Runtime.getRuntime().exec(shell2); p.waitFor(); break;
-                case "4": p = Runtime.getRuntime().exec(shell4); p.waitFor(); break;
+                case "4": System.out.println("[shijiantest-180316] " + shell4);
+                           p = Runtime.getRuntime().exec(shell4); p.waitFor(); break;
                 default: throw new Exception("invalid mode[" + cas.getMode() + "]");
             }
         } catch (Exception ex) {

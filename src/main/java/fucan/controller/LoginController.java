@@ -5,6 +5,7 @@ import fucan.entity.response.SessionResponse;
 import fucan.service.UserService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ public class LoginController {
 
     //1.登录
     @RequestMapping("/login")
+    @CrossOrigin
     public String login(@RequestParam(value="username") String id, @RequestParam(value="password") String password){
 
         JSONObject jsonRet;
